@@ -1,5 +1,5 @@
 From aed55530a80d0bf92221ecd8efb5630d1a7b9262 Mon Sep 17 00:00:00 2001
-From: Andre Przywara <andre.przywara@arm.com>
+From: Nick Alilovic <nickalilovic@gmail.com>
 Date: Sat, 3 Feb 2024 11:12:14 -0500
 Subject: [PATCH 2/2] arm64: dts: allwinner: h618: add Transpeed 8K618-T TV box
 
