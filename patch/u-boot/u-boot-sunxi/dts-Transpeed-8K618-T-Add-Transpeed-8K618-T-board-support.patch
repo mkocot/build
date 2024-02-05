@@ -87,7 +87,7 @@ index 0000000000..8ea1fd41ae
 +
 +&mmc0 {
 +	vmmc-supply = <&reg_dldo1>;
-+	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
 +	bus-width = <4>;
 +	status = "okay";
 +};
@@ -100,7 +100,7 @@ index 0000000000..8ea1fd41ae
 +	cap-mmc-hw-reset;
 +	mmc-ddr-1_8v;
 +	mmc-hs200-1_8v;
-+	status = "okay";
++	status = "disabled";
 +};
 +
 +&ohci0 {

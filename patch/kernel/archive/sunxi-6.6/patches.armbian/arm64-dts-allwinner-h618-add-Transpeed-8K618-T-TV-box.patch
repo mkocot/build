@@ -166,7 +166,7 @@ index 000000000000..f80814414038
 +
 +&mmc0 {
 +	vmmc-supply = <&reg_dldo1>;
-+	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
 +	bus-width = <4>;
 +	status = "okay";
 +};
