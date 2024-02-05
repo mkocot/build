@@ -61,7 +61,7 @@ new file mode 100644
 index 000000000000..b5b5c0cb963c
 --- /dev/null
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -0,0 +1,219 @@
+@@ -0,0 +1,237 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (C) 2023 Arm Ltd.
@@ -80,6 +80,7 @@ index 000000000000..b5b5c0cb963c
 +	compatible = "transpeed,8k618-t", "allwinner,sun50i-h618";
 +
 +	aliases {
++		ethernet0 = &emac1;
 +		serial0 = &uart0;
 +	};
 +
@@ -164,7 +165,7 @@ index 000000000000..b5b5c0cb963c
 +
 +&mmc0 {
 +	vmmc-supply = <&reg_dldo1>;
-+	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
 +	bus-width = <4>;
 +	status = "okay";
 +};
@@ -190,7 +191,23 @@ index 000000000000..b5b5c0cb963c
 +	cap-mmc-hw-reset;
 +	mmc-ddr-1_8v;
 +	mmc-hs200-1_8v;
++	status = "disabled";
++};
++&emac1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&rmii_pins>;
++	phy-mode = "rmii";
++	phy-handle = <&rmii_phy>;
++	phy-supply = <&reg_dldo1>;
++	allwinner,rx-delay-ps = <3100>;
++	allwinner,tx-delay-ps = <700>;
 +	status = "okay";
++};
++&mdio1 {
++        rmii_phy: ethernet-phy@1 {
++                compatible = "ethernet-phy-ieee802.3-c22";
++                reg = <1>;
++        };
 +};
 +
 +&ohci0 {
@@ -255,6 +272,7 @@ index 000000000000..b5b5c0cb963c
 +
 +&pio {
 +	vcc-pc-supply = <&reg_aldo1>;
++	vcc-pf-supply = <&reg_dldo1>;
 +	vcc-pg-supply = <&reg_dldo1>;
 +	vcc-ph-supply = <&reg_dldo1>;
 +	vcc-pi-supply = <&reg_dldo1>;
