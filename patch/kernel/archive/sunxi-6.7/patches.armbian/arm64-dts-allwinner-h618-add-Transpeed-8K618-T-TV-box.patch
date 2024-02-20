@@ -1,6 +1,6 @@
-From aed55530a80d0bf92221ecd8efb5630d1a7b9262 Mon Sep 17 00:00:00 2001
+From 6698c446c0bc5cf8828876ed73d267c40a5952d7 Mon Sep 17 00:00:00 2001
 From: Nick Alilovic <nickalilovic@gmail.com>
-Date: Sat, 3 Feb 2024 11:12:14 -0500
+Date: Tue, 20 Feb 2024 16:16:01 -0500
 Subject: [PATCH 2/2] arm64: dts: allwinner: h618: add Transpeed 8K618-T TV box
 
 This is a Chinese TV box, probably very similar if not identical to
@@ -24,13 +24,13 @@ although this isn't working yet.
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |   5 +
- .../sun50i-h618-transpeed-8k618-t.dts         | 219 ++++++++++++++++++
- 3 files changed, 225 insertions(+)
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |   7 +
+ .../sun50i-h618-transpeed-8k618-t.dts         | 220 ++++++++++++++++++
+ 3 files changed, 228 insertions(+)
  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
 
 diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index abd85a78bfb9..f33bef8f640e 100644
+index abd85a78bfb9..387f418f273d 100644
 --- a/arch/arm64/boot/dts/allwinner/Makefile
 +++ b/arch/arm64/boot/dts/allwinner/Makefile
 @@ -57,5 +57,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
@@ -41,27 +41,29 @@ index abd85a78bfb9..f33bef8f640e 100644
  
  subdir-y	:= $(dts-dirs) overlay
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 5b950b612ce3..63f7f5a8819e 100644
+index 5b950b612ce3..be56fb529bc2 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -390,6 +390,11 @@ uart1_rts_cts_pins: uart1-rts-cts-pins {
+@@ -390,6 +390,13 @@ uart1_rts_cts_pins: uart1-rts-cts-pins {
  				pins = "PG8", "PG9";
  				function = "uart1";
  			};
 +
++			/omit-if-no-ref/
 +                        x32clk_fanout_pin: x32clk-fanout-pin {
 +                                pins = "PG10";
 +                                function = "clock";
-+                        }; 
++                        };
++
  		};
  
  		gic: interrupt-controller@3021000 {
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
 new file mode 100644
-index 000000000000..b5b5c0cb963c
+index 000000000000..f80814414038
 --- /dev/null
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -0,0 +1,219 @@
+@@ -0,0 +1,220 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (C) 2023 Arm Ltd.
@@ -80,6 +82,7 @@ index 000000000000..b5b5c0cb963c
 +	compatible = "transpeed,8k618-t", "allwinner,sun50i-h618";
 +
 +	aliases {
++		ethernet1 = &sdio_wifi;
 +		serial0 = &uart0;
 +	};
 +
